@@ -14,10 +14,22 @@ export const AuthProvider = ({ children }) => {
     return sendbirdAccessToken;
   };
 
+  const register = async (userId, nickname) => {
+    const response = await fetch('/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId, nickname }),
+    });
+    const jsonResponse = await response.json();
+    const { sendbirdAccessToken } = jsonResponse;
+    return sendbirdAccessToken;
+  };
+
   return (
     <authContext.Provider
       value={{
         login,
+        register,
       }}
     >
       {children}
@@ -26,9 +38,10 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => {
-  const { login } = useContext(authContext);
+  const { login, register } = useContext(authContext);
 
   return {
     login,
+    register,
   };
 };
