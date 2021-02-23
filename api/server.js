@@ -34,7 +34,6 @@ const getSendbirdUser = async (userId) => {
 
 // Register
 app.post('/register', bodyParser.json(), async (req, res) => {
-  console.log('registering');
   const { body } = req;
   const { userId, nickname } = body;
   const sendbirdUser = await createSendbirdUser(userId, nickname);

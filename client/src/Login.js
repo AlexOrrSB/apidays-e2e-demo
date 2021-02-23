@@ -13,7 +13,6 @@ const Login = ({ setConfig }) => {
 
     const userId = target.userId.value;
     const nickname = target.nickname.value;
-    console.log(target.registration);
     const shouldRegister = target.registration.checked;
 
     if (shouldRegister) {
