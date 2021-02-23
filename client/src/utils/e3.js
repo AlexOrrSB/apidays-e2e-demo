@@ -25,12 +25,33 @@ export const E3Provider = ({ children }) => {
     }
   };
 
+  const createGroup = async (groupId, participantIdentities) => {
+    try {
+      const participants = await e3.findUsers(participantIdentities);
+      await e3.createGroup(groupId, participants);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const loadGroup = async (channel) => {
+    try {
+      const { ownerId, groupId } = JSON.parse(channel.data);
+      const ownerCard = await e3.findUsers(ownerId);
+      return await e3.loadGroup(groupId, ownerCard);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <e3Context.Provider
       value={{
         initE3,
         isInitialized,
         registerUser,
+        createGroup,
+        loadGroup,
       }}
     >
       {children}
@@ -39,11 +60,19 @@ export const E3Provider = ({ children }) => {
 };
 
 export const useE3 = () => {
-  const { initE3, isInitialized, registerUser } = useContext(e3Context);
+  const {
+    initE3,
+    isInitialized,
+    registerUser,
+    createGroup,
+    loadGroup,
+  } = useContext(e3Context);
 
   return {
     initE3,
     isInitialized,
     registerUser,
+    createGroup,
+    loadGroup,
   };
 };

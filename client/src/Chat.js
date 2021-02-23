@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-  Channel,
-  ChannelList,
-  ChannelSettings,
-  SendBirdProvider,
-} from 'sendbird-uikit';
+import { Channel, ChannelSettings, SendBirdProvider } from 'sendbird-uikit';
 import 'sendbird-uikit/dist/index.css';
+
+import ChannelList from './ChannelList';
 
 import { useHistory } from 'react-router-dom';
 import { useE3 } from './utils/e3';
@@ -30,7 +27,7 @@ const Chat = ({
   const { initE3, isInitialized, registerUser } = useE3();
 
   useEffect(() => {
-    if (!isInitialized) {
+    if (!isInitialized && virgilToken) {
       initE3(virgilToken);
     }
     if (didRegister && isInitialized) {
@@ -47,9 +44,7 @@ const Chat = ({
     >
       <div className='sendbird-app__wrap'>
         <div className='sendbird-app__channellist-wrap'>
-          <ChannelList
-            onChannelSelect={(channel) => setCurrentChannel(channel.url)}
-          />
+          <ChannelList setCurrentChannel={setCurrentChannel} />
         </div>
         <div className='sendbird-app__conversation-wrap'>
           <Channel
@@ -61,7 +56,7 @@ const Chat = ({
       {showSettings && (
         <div className='sendbird-app__settingspanel-wrap'>
           <ChannelSettings
-            channelUrl={currentChannel?.url}
+            channelUrl={currentChannel}
             onCloseClick={() => setShowSettings(false)}
           />
         </div>

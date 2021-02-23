@@ -17,3 +17,4 @@
 - yarn add @virgilsecurity/e3kit-browser
 - yarn add -D file-loader
 - yarn eject
+- yarn add cuid
