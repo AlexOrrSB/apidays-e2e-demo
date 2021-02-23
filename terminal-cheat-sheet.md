@@ -12,3 +12,7 @@
 
 ## API
 - yarn add virgil-sdk virgil-crypto
+
+## Client
+- yarn add @virgilsecurity/e3kit-browser
+- yarn add -D file-loader
