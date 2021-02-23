@@ -10,8 +10,7 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ userId }),
     });
     const jsonResponse = await response.json();
-    const { sendbirdAccessToken } = jsonResponse;
-    return sendbirdAccessToken;
+    return jsonResponse;
   };
 
   const register = async (userId, nickname) => {
@@ -21,8 +20,7 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ userId, nickname }),
     });
     const jsonResponse = await response.json();
-    const { sendbirdAccessToken } = jsonResponse;
-    return sendbirdAccessToken;
+    return jsonResponse;
   };
 
   return (

@@ -17,16 +17,26 @@ const Login = ({ setConfig }) => {
 
     if (shouldRegister) {
       register(userId, nickname)
-        .then((sendbirdAccessToken) => {
-          setupChat({ userId, nickname, accessToken: sendbirdAccessToken });
+        .then(({ sendbirdAccessToken, virgilToken }) => {
+          setupChat({
+            userId,
+            nickname,
+            accessToken: sendbirdAccessToken,
+            virgilToken,
+          });
         })
         .catch((e) => {
           alert(e);
         });
     } else {
       login(userId)
-        .then((sendbirdAccessToken) => {
-          setupChat({ userId, nickname, accessToken: sendbirdAccessToken });
+        .then(({ sendbirdAccessToken, virgilToken }) => {
+          setupChat({
+            userId,
+            nickname,
+            accessToken: sendbirdAccessToken,
+            virgilToken,
+          });
         })
         .catch((e) => {
           alert(e);
@@ -34,8 +44,8 @@ const Login = ({ setConfig }) => {
     }
   };
 
-  const setupChat = ({ userId, nickname, accessToken }) => {
-    setConfig({ userId, nickname, accessToken });
+  const setupChat = ({ userId, nickname, accessToken, virgilToken }) => {
+    setConfig({ userId, nickname, accessToken, virgilToken });
     history.push('/chat');
   };
 
