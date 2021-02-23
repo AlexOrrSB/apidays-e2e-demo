@@ -11,6 +11,13 @@ const Chat = ({
   virgilToken,
   didRegister = false,
 }) => {
+  const history = useHistory();
+  useEffect(() => {
+    if (!userId || !nickname) {
+      history.push('/');
+    }
+  }, [userId, nickname, history]);
+
   const { initE3, isInitialized, registerUser } = useE3();
 
   useEffect(() => {
