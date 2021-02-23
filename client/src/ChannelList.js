@@ -9,7 +9,7 @@ const CustomChannelList = ({ sdk, setCurrentChannel }) => {
 
   return (
     <ChannelList
-      onChannelSelect={(channel) => setCurrentChannel(channel.url)}
+      onChannelSelect={(channel) => {setCurrentChannel(channel)}}
       onBeforeCreateChannel={(selectedUsers) => {
         if (!sdk || !sdk.GroupChannelParams) {
           return;

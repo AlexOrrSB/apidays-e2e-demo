@@ -18,3 +18,4 @@
 - yarn add -D file-loader
 - yarn eject
 - yarn add cuid
+- yarn add @material-ui/core @material-ui/icons

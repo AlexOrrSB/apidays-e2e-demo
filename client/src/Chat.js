@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import { Channel, ChannelSettings, SendBirdProvider } from 'sendbird-uikit';
+import { ChannelSettings, SendBirdProvider } from 'sendbird-uikit';
 import 'sendbird-uikit/dist/index.css';
 
 import ChannelList from './ChannelList';
+import Channel from './Channel';
 
 import { useHistory } from 'react-router-dom';
 import { useE3 } from './utils/e3';
@@ -48,7 +49,7 @@ const Chat = ({
         </div>
         <div className='sendbird-app__conversation-wrap'>
           <Channel
-            channelUrl={currentChannel}
+            currentChannel={currentChannel}
             onChatHeaderActionClick={() => setShowSettings(true)}
           />
         </div>
@@ -56,7 +57,7 @@ const Chat = ({
       {showSettings && (
         <div className='sendbird-app__settingspanel-wrap'>
           <ChannelSettings
-            channelUrl={currentChannel}
+            setShowSettings={setShowSettings}
             onCloseClick={() => setShowSettings(false)}
           />
         </div>
