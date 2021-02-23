@@ -32,6 +32,30 @@ const getSendbirdUser = async (userId) => {
   return await response.json();
 };
 
+// Register
+app.post('/register', bodyParser.json(), async (req, res) => {
+  console.log('registering');
+  const { body } = req;
+  const { userId, nickname } = body;
+  const sendbirdUser = await createSendbirdUser(userId, nickname);
+  const sendbirdAccessToken = sendbirdUser.access_token;
+  res.status(200).json({ sendbirdAccessToken });
+});
+
+const createSendbirdUser = async (userId, nickname) => {
+  const response = await fetch(`${sendbirdBaseUrl}/v3/users`, {
+    method: 'POST',
+    headers: sendbirdHeaders,
+    body: JSON.stringify({
+      user_id: userId,
+      nickname,
+      profile_url: '',
+      issue_access_token: true,
+    }),
+  });
+  return await response.json();
+};
+
 app.listen(port, () => {
   console.log(`API server started on port ${port}`);
 });
