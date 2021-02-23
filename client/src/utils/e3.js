@@ -34,6 +34,43 @@ export const E3Provider = ({ children }) => {
     }
   };
 
+  const _decryptMessage = async (message, group) => {
+    try {
+      if (message.messageType === 'user' && message.sender) {
+        const senderCart = await e3.findUsers(message.sender.userId);
+        const decryptedMessage = await group.decrypt(
+          message.message,
+          senderCart,
+        );
+        return decryptedMessage;
+      }
+      return;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const decryptMessage = async (channel, message) => {
+    const decryptedMessages = await decryptMessages(channel, [message]);
+    return decryptedMessages.pop();
+  };
+
+  const decryptMessages = async (channel, messages) => {
+    try {
+      const group = await loadGroup(channel);
+
+      const decryptedMessagesPromises = messages.map((message) => {
+        return _decryptMessage(message, group).then((decryptedMessage) => {
+          return decryptedMessage;
+        });
+      });
+
+      return Promise.all(decryptedMessagesPromises);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const createGroup = async (groupId, participantIdentities) => {
     try {
       const participants = await e3.findUsers(participantIdentities);
