@@ -5,3 +5,4 @@
 - yarn init
 - yarn add express nodemon node-fetch
 - yarn add dotenv
+- yarn add nodefetch body-parser
