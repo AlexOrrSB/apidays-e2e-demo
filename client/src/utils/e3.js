@@ -97,6 +97,8 @@ export const E3Provider = ({ children }) => {
         isInitialized,
         registerUser,
         encryptMessage,
+        decryptMessage,
+        decryptMessages,
         createGroup,
         loadGroup,
       }}
@@ -112,6 +114,8 @@ export const useE3 = () => {
     isInitialized,
     registerUser,
     encryptMessage,
+    decryptMessage,
+    decryptMessages,
     createGroup,
     loadGroup,
   } = useContext(e3Context);
@@ -121,6 +125,8 @@ export const useE3 = () => {
     isInitialized,
     registerUser,
     encryptMessage,
+    decryptMessage,
+    decryptMessages,
     createGroup,
     loadGroup,
   };
