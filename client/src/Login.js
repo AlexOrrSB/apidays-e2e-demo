@@ -23,6 +23,7 @@ const Login = ({ setConfig }) => {
             nickname,
             accessToken: sendbirdAccessToken,
             virgilToken,
+            didRegister: true,
           });
         })
         .catch((e) => {
