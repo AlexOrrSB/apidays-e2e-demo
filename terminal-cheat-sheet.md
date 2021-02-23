@@ -6,3 +6,6 @@
 - yarn add express nodemon node-fetch
 - yarn add dotenv
 - yarn add nodefetch body-parser
+
+## Client
+- yarn add react-router-dom
