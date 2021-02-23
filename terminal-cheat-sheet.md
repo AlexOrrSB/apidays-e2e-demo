@@ -4,3 +4,4 @@
 ## API
 - yarn init
 - yarn add express nodemon node-fetch
+- yarn add dotenv
