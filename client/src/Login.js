@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useAuth } from './utils/auth';
 
 const Login = ({ setConfig }) => {
-  const { login } = useAuth();
+  const { login, register } = useAuth();
   const history = useHistory();
 
   const onLogin = (e) => {
@@ -13,15 +13,31 @@ const Login = ({ setConfig }) => {
 
     const userId = target.userId.value;
     const nickname = target.nickname.value;
+    console.log(target.registration);
+    const shouldRegister = target.registration.checked;
 
-    login(userId)
-      .then((sendbirdAccessToken) => {
-        setConfig({ userId, nickname, accessToken: sendbirdAccessToken });
-        history.push('/chat');
-      })
-      .catch((e) => {
-        alert(e);
-      });
+    if (shouldRegister) {
+      register(userId, nickname)
+        .then((sendbirdAccessToken) => {
+          setupChat({ userId, nickname, accessToken: sendbirdAccessToken });
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    } else {
+      login(userId)
+        .then((sendbirdAccessToken) => {
+          setupChat({ userId, nickname, accessToken: sendbirdAccessToken });
+        })
+        .catch((e) => {
+          alert(e);
+        });
+    }
+  };
+
+  const setupChat = ({ userId, nickname, accessToken }) => {
+    setConfig({ userId, nickname, accessToken });
+    history.push('/chat');
   };
 
   return (
@@ -32,6 +48,8 @@ const Login = ({ setConfig }) => {
         <input name='userId' />
         <label>nickname: </label>
         <input name='nickname' />
+        <label>create user?</label>
+        <input name='registration' type='checkbox'></input>
         <button>Login</button>
       </form>
     </div>
