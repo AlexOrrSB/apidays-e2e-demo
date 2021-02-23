@@ -9,3 +9,6 @@
 
 ## Client
 - yarn add react-router-dom
+
+## API
+- yarn add virgil-sdk virgil-crypto
