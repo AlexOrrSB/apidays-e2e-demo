@@ -25,6 +25,15 @@ export const E3Provider = ({ children }) => {
     }
   };
 
+  const encryptMessage = async (channel, message) => {
+    try {
+      const group = await loadGroup(channel);
+      return await group.encrypt(message);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const createGroup = async (groupId, participantIdentities) => {
     try {
       const participants = await e3.findUsers(participantIdentities);
@@ -50,6 +59,7 @@ export const E3Provider = ({ children }) => {
         initE3,
         isInitialized,
         registerUser,
+        encryptMessage,
         createGroup,
         loadGroup,
       }}
@@ -64,6 +74,7 @@ export const useE3 = () => {
     initE3,
     isInitialized,
     registerUser,
+    encryptMessage,
     createGroup,
     loadGroup,
   } = useContext(e3Context);
@@ -72,6 +83,7 @@ export const useE3 = () => {
     initE3,
     isInitialized,
     registerUser,
+    encryptMessage,
     createGroup,
     loadGroup,
   };
