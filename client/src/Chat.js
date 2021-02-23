@@ -50,14 +50,14 @@ const Chat = ({
         <div className='sendbird-app__conversation-wrap'>
           <Channel
             currentChannel={currentChannel}
-            onChatHeaderActionClick={() => setShowSettings(true)}
+            setShowSettings={setShowSettings}
           />
         </div>
       </div>
       {showSettings && (
         <div className='sendbird-app__settingspanel-wrap'>
           <ChannelSettings
-            setShowSettings={setShowSettings}
+            channelUrl={currentChannel?.url}
             onCloseClick={() => setShowSettings(false)}
           />
         </div>
