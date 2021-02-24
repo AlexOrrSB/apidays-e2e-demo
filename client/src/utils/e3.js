@@ -25,6 +25,14 @@ export const E3Provider = ({ children }) => {
     }
   };
 
+  const rotatePrivateKey = async () => {
+    try {
+      e3.rotatePrivateKey();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const encryptMessage = async (channel, message) => {
     try {
       const group = await loadGroup(channel);
@@ -96,6 +104,7 @@ export const E3Provider = ({ children }) => {
         initE3,
         isInitialized,
         registerUser,
+        rotatePrivateKey,
         encryptMessage,
         decryptMessage,
         decryptMessages,
@@ -113,6 +122,7 @@ export const useE3 = () => {
     initE3,
     isInitialized,
     registerUser,
+    rotatePrivateKey,
     encryptMessage,
     decryptMessage,
     decryptMessages,
@@ -124,6 +134,7 @@ export const useE3 = () => {
     initE3,
     isInitialized,
     registerUser,
+    rotatePrivateKey,
     encryptMessage,
     decryptMessage,
     decryptMessages,
