@@ -9,13 +9,7 @@ import Channel from './Channel';
 import { useHistory } from 'react-router-dom';
 import { useE3 } from './utils/e3';
 
-const Chat = ({
-  userId,
-  nickname,
-  accessToken,
-  virgilToken,
-  didRegister = false,
-}) => {
+const Chat = ({ userId, nickname, accessToken, virgilToken, didRegister }) => {
   const history = useHistory();
   useEffect(() => {
     if (!userId || !nickname) {

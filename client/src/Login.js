@@ -37,6 +37,7 @@ const Login = ({ setConfig }) => {
             nickname,
             accessToken: sendbirdAccessToken,
             virgilToken,
+            didRegister: false,
           });
         })
         .catch((e) => {
@@ -45,8 +46,14 @@ const Login = ({ setConfig }) => {
     }
   };
 
-  const setupChat = ({ userId, nickname, accessToken, virgilToken }) => {
-    setConfig({ userId, nickname, accessToken, virgilToken });
+  const setupChat = ({
+    userId,
+    nickname,
+    accessToken,
+    virgilToken,
+    didRegister,
+  }) => {
+    setConfig({ userId, nickname, accessToken, virgilToken, didRegister });
     history.push('/chat');
   };
 

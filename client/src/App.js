@@ -19,6 +19,7 @@ const App = () => {
               nickname={config.nickname}
               accessToken={config.accessToken}
               virgilToken={config.virgilToken}
+              didRegister={config.didRegister}
             />
           </Route>
           <Route path='/'>
